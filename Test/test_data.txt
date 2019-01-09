@@ -1,0 +1,81 @@
+Hayden Whitney Term 2 Final
+CONSTRUCTORS
+A _ allows you to access a particular part in a list.
+A) cut 
+B) slice
+C) punch
+D) stab
+B) 
+The slice() constructor creates a slice object representing the set of indices specified by range(start, stop, step).
+DENOMINATIONS
+Names that store data are called: 
+A) nicknames 
+B) names
+C) variables
+D) racial slurs
+C) 
+Variables are nothing but reserved memory locations to store values. 
+CONDITIONS
+A(n) _ statement tests a specified condition.
+A) if 
+B) or
+C) what
+D) how
+A) 
+A logical condition that if met will provide a true return.
+OPERATIONS
+Symbols that perform mathematical operations (+, -, *, 'forward slash') are known as: 
+A) Commanders. 
+B) Lieutenants.
+C) Operators.
+D) Sergeants.
+C) 
+Operators are special symbols in Python that carry out arithmetic or logical computation. The value that the operator operates on is called the operand.
+FUNCTIONS
+A named sequence of statements that will perform some useful operation is: 
+A) a command.
+B) a function.
+C) a variable.
+D) an order.
+B) 
+explanation
+DOCUMENTATION
+Code with human readable descriptions that can help document design decisions and has no affect on the execution of the code are called: 
+A) dogs.
+B) helpful statements.
+C) comments.
+D) remarks.
+C) 
+A code comment can be specified with ## or """ """ and kept in the code without affecting the function of the code.
+DATA TYPES
+A _ stores a series of values that can be accessed through indexing or loops. 
+A) grocery bag
+B) list
+C) cart
+D) backpack
+B) 
+A list is a data structure in Python that is a mutable, or changeable, ordered sequence of elements. 
+DATA TYPES
+A floating decimal point number is a: 
+A) life jacket
+B) boat.
+C) float.
+D) raft.
+C) 
+A float is a number that contains a decimal point.
+DATA TYPES
+A number that is either a positive or negative whole number is a(n): 
+A) irrational number.
+B) fraction.
+C) integer.
+D) imaginary number.
+C) 
+An integer is a + or - whole number.
+SYNTAX
+The order of operations that python follows is this acronym.
+A) PEMDAS 
+B) GEMINI
+C) FEMDOM
+D) FLAMINGO
+A) 
+PEMDAS or Parentheses, Exponents, Multiplication, Division, Addition, Subtraction
