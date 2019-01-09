@@ -1,43 +1,37 @@
 #Hayden Whitney
-#12/18
 #Tic Tac Toe
-
+#12/18
 X = "X"
 O = "O"
 EMPTY = " "
 TIE = "TIE"
 NUM_SQUARES = 9
 
-def display_instructions():
+def instructions():
     print("""
-    WELCOME TO TIC TAC TOE
 
-    Your challenger will be my superior A.I. technology.
-
-    You will make your move by entering a number, 0 - 8.
-    The number will correspond to the board position
-    as illustrated:
+    Welcome!
+    Enter your input by choosing a number 0-8
+    to place your X's or O's on the board
     
+      0 ║ 1 ║ 2  
+      ══╬═══╬══
+      3 ║ 4 ║ 5
+      ══╬═══╬══
+      6 ║ 7 ║ 8
 
-                       7 ║ 8 ║ 9
-                       ══╬═══╬══
-                       4 ║ 5 ║ 6
-                       ══╬═══╬══   
-                       1 ║ 2 ║ 3
 
-    You will be playing against a computer so give it
-    your best shot.
-                     
-    """)
+    Good luck beating me fleshbag.
+""")
 
-def ask_yes_no(question):
-    response = None
-    possible_responses = ["Yes", "Ye", "Y", "No", "N"]
-    while response not in possible_responses:
-        response = input(question).title()
+def yes_no(question):
+    response = ""
+    while response != "y" and response != "n":
+        response = input(question)
     return response
 
 def ask_number(question, low, high):
+    """ASK FOR NUMBER WITHIN RANGE"""
     response = "9999"
     while True:
         if response.isdigit():
@@ -46,18 +40,18 @@ def ask_number(question, low, high):
             else:
                 response = input(question)
         else:
-            print("You must enter a number.")
+            print("you must enter a number")
             response = input(question)
     return int(response)
 
 def pieces():
-    response = ask_yes_no("Would you like to go first? ")
-    if response == "Y":
-        print("Coward.")
+    go_first = yes_no("Would you like to go first? ")
+    if go_first == "y":
+        print("Coward")
         human = X
         computer = O
     else:
-        print("Letting me go first was a mistake.")
+        print("I see the fleshbag has an ego...")
         human = O
         computer = X
     return human, computer
@@ -71,14 +65,14 @@ def new_board():
 def display_board(board):
     """Display the board on the screen"""
     print("\n\t", board[0],"║", board[1], "║", board[2])
-    print("\t", "══╬═══╬══")
-    print("\t", board[3],"║", board[4], "║", board[5])
-    print("\t", "══╬═══╬══")
+    print("\t", "══╬═══╬══          012")
+    print("\t", board[3],"║", board[4], "║", board[5], "         345")
+    print("\t", "══╬═══╬══          678")
     print("\t", board[6],"║", board[7], "║", board[8])
 
 def legal_moves(board):
     moves = []
-    for square in range(len(board)):
+    for square in range(NUM_SQUARES):
         if board[square] == EMPTY:
             moves.append(square)
         else:
@@ -102,58 +96,45 @@ def winner(board):
         return TIE
     return None
 
-def human_move(board):
-    """Get human move."""  
-    legal = legal_moves(board)
+def human_moves(board, human):
+    moves = legal_moves(board)
+    print(moves)
     move = None
-    while move not in legal:
-        move = ask_number("Where will you move? (0 - 8):", 0, NUM_SQUARES)
-        if move not in legal:
-            print("\nThat square is already occupied, foolish human.  Choose another.\n")
-    print("Fine...")
-    return move
+    while move not in moves:
+        move = ask_number("Enter the board position of your next move: ", 0, NUM_SQUARES)
+        if move not in moves:
+            print("That is not a valid move fleshbag...")
+        elif move in moves:
+            return move
 
 def next_turn(turn):
-    """Switch turns."""
     if turn == X:
         return O
     else:
         return X
 
-def congrat_winner(the_winner, computer, human):
-    """Congratulate the winner."""
-    if the_winner != TIE:
-        print(the_winner, "won!\n")
+def congrat_winner(winner, human, computer):
+    if winner != TIE:
+        print(winner, "WINS!")
     else:
-        print("It's a tie!\n")
+        print("TIE")
 
-    if the_winner == computer:
-        print("As I predicted, human, I am triumphant once more.  \n" \
-              "Proof that computers are superior to humans in all regards.")
+    if winner == computer:
+        print("You never had a chance fleshbag...")
+    elif winner == human:
+        print("fine, you win fleshbag.")
+    elif winner == TIE:
+        print("I would never let you win fleshbag")
 
-    elif the_winner == human:
-        print("No, no!  It cannot be!  Somehow you tricked me, human. \n" \
-              "But never again!  I, the computer, so swear it!")
-
-    elif the_winner == TIE:
-        print("You were most lucky, human, and somehow managed to tie me.  \n" \
-              "Celebrate today... for this is the best you will ever achieve.")
-
-def computer_move(board, computer, human):
-    """Make computer move."""
-    # make a copy to work with since function will be changing list
+def computer_moves(board, computer, human):
     board = board[:]
-     # the best positions to have, in order
     BEST_MOVES = (4, 0, 2, 6, 8, 1, 3, 5, 7)
-    print("I shall take square number", end=" ")
-    
-    # if computer can win, take that move
+    print("I will take square", end=" ")
     for move in legal_moves(board):
         board[move] = computer
         if winner(board) == computer:
             print(move)
             return move
-        # done checking this move, undo it
         board[move] = EMPTY
         
     for move in legal_moves(board):
@@ -161,19 +142,37 @@ def computer_move(board, computer, human):
         if winner(board) == human:
             print(move)
             return move
-        # done checkin this move, undo it
         board[move] = EMPTY
-
-    # since no one can win on next move, pick best open square
+        
     for move in BEST_MOVES:
         if move in legal_moves(board):
             print(move)
             return move
-    
+
 def main():
-    
+    while True:
+        instructions()
+        human, computer = pieces()
+        turn = X
+        board = new_board()
+        display_board(board)
+        while not winner(board):
+            if turn == human:
+                move = human_moves(board, human)
+                board[move] = human
+                display_board(board)
+                turn = computer
+            elif turn == computer:
+                move = computer_moves(board, computer, human)
+                board[move] = computer
+                display_board(board)
+                turn = human
+        win = winner(board)
+        congrat_winner(win, human, computer)
+        play_again = input("Play Again? (y/n) ")
+        if play_again == "y":
+            continue
+        else:
+            break
 
 main()
-
-    
-    
