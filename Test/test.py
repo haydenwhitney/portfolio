@@ -59,9 +59,7 @@ def main():
         print(explanation)
         print("Score:", score)
         category, question, answers, correct, explanation = next_block(the_file)
-    print("\nh
-
-    The final score is:", score)
+    print("\nThe final score is:", score)
     the_file.close()
     input("\n\nPress enter to exit.")
     
