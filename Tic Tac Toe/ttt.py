@@ -171,12 +171,7 @@ def computer_move(board, computer, human):
             return move
     
 def main():
-
     
-
-
-
-
 
 main()
 

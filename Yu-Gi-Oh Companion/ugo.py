@@ -107,6 +107,5 @@ def calculate_lp():
       print(player_2, ":")
       print(player_2_lp)
       
-
 welcome()
 main()
